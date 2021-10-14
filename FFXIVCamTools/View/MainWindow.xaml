@@ -1,0 +1,104 @@
+﻿<Window x:Class="FFXIVCamTools.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FFXIVCamTools.View"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="{materialDesign:MaterialDesignFont}"
+        Title="MainWindow" Height="268" Width="502"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Closed="Window_OnClosed">
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="NormalButtonBrush" Color="Transparent"/>
+        <SolidColorBrush x:Key="NormalBackgroundBrush" Color="Transparent"/>
+        <SolidColorBrush x:Key="HoverButtonBrush" Color="#4F4F4F"/>
+        <SolidColorBrush x:Key="HoverBackgroundBrush" Color="#4F4F4F"/>
+        <Style x:Key="HoverButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="{StaticResource NormalButtonBrush}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="HoverButtonBorder" BorderThickness="0" BorderBrush="{StaticResource NormalButtonBrush}" Background="{StaticResource NormalBackgroundBrush}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="HoverButtonBorder" Property="BorderBrush" Value="{DynamicResource MaterialDesignFlatButtonClick}" />
+                                <Setter TargetName="HoverButtonBorder" Property="Background" Value="{DynamicResource MaterialDesignFlatButtonClick}" />
+                                <Setter Property="Foreground" Value="{DynamicResource MaterialDesignFlatButtonClick}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="HoverButtonBorder" Property="Background" Value="{StaticResource MaterialDesignFlatButtonClick}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Border
+            Background="{DynamicResource MaterialDesignPaper}"
+            Grid.ColumnSpan="2"
+            MouseDown="Border_MouseDown">
+
+            <Grid 
+                HorizontalAlignment="Stretch">
+
+                <Label
+                    Content="FFXIVCamTools" FontSize="14"
+                    HorizontalAlignment="Left" VerticalAlignment="Center"
+                    Margin="10,0,0,0"/>
+
+                <StackPanel 
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+
+                    <Button
+                        Style="{StaticResource HoverButtonStyle}"
+                        Width="30" Height="30"
+                        Click="MinimizeButton_Click">
+
+                        <materialDesign:PackIcon
+                            Kind="WindowMinimize"
+                            Foreground="{DynamicResource MaterialDesignToolBackground}"/>
+
+                    </Button>
+
+                    <Button
+                        Style="{StaticResource HoverButtonStyle}"
+                        Width="30" Height="30"
+                        Click="CloseButton_Click">
+
+                        <materialDesign:PackIcon
+                            Kind="WindowClose"
+                            Foreground="{DynamicResource MaterialDesignToolTipBackground}"/>
+
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <local:CameraControl
+            Grid.Row="1"/>
+
+        <Border
+            BorderBrush="{StaticResource PrimaryHueLightBrush}" BorderThickness="1" Grid.RowSpan="2"/>
+    </Grid>
+</Window>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Root>
+  <Offset>
+    <StructureAddress>1DAEF70</StructureAddress>
+    <ZoomCurrent>114</ZoomCurrent>
+    <ZoomMax>11C</ZoomMax>
+    <FovCurrent>120</FovCurrent>
+    <FovMax>128</FovMax>
+  </Offset>
+  <Config>
+    <LastUpdate>2021-08-24 - patch 5.59?</LastUpdate>
+    <DesiredZoom>20</DesiredZoom>
+    <DesiredFov>78</DesiredFov>
+  </Config>
+</Root>
